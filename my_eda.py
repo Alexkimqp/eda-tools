@@ -142,8 +142,9 @@ def top_corr(
     print(top_n)
     
     if heatmap:
+        corr_matrix_for_heatmap = df[numeric_cols].corr(method=method)
         plt.figure(figsize=figsize)
-        sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', center=0, 
+        sns.heatmap(corr_matrix_for_heatmap, annot=True, cmap='coolwarm', center=0, 
                    fmt='.2f', square=True, linewidths=0.5)
         plt.title(f'Correlation Heatmap ({method.capitalize()})')
         plt.tight_layout()
