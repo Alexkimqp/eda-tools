@@ -92,7 +92,8 @@ def top_corr(
     df: pd.DataFrame,
     n: int = 10,
     method: str = 'pearson',
-    heatmap: bool = False
+    heatmap: bool = False,
+    figsize: tuple[int, int] = (10, 8)
 ) -> Optional[pd.Series]:
     """Find top N feature correlations in a DataFrame.
     
@@ -105,6 +106,7 @@ def top_corr(
         method: Correlation method to use. Options: 'pearson', 'kendall', 'spearman'.
             Defaults to 'pearson'.
         heatmap: If True, displays a correlation heatmap. Defaults to False.
+        figsize: Figure size for the heatmap as (width, height) tuple. Defaults to (10, 8).
         
     Returns:
         pandas Series with top N correlations, or None if no numeric columns found.
@@ -140,7 +142,7 @@ def top_corr(
     print(top_n)
     
     if heatmap:
-        plt.figure(figsize=(10, 8))
+        plt.figure(figsize=figsize)
         sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', center=0, 
                    fmt='.2f', square=True, linewidths=0.5)
         plt.title(f'Correlation Heatmap ({method.capitalize()})')

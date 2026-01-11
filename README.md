@@ -57,7 +57,7 @@ Performs basic exploratory data analysis and prints a comprehensive report.
 basic_eda(df)
 ```
 
-### `top_corr(df: pd.DataFrame, n: int = 10, method: str = 'pearson', heatmap: bool = False) -> pd.Series`
+### `top_corr(df: pd.DataFrame, n: int = 10, method: str = 'pearson', heatmap: bool = False, figsize: tuple[int, int] = (10, 8)) -> pd.Series`
 
 Finds top N feature correlations in a DataFrame.
 
@@ -66,6 +66,7 @@ Finds top N feature correlations in a DataFrame.
 - `n`: Number of top correlations to return (default: 10)
 - `method`: Correlation method - 'pearson', 'kendall', or 'spearman' (default: 'pearson')
 - `heatmap`: If True, displays a correlation heatmap (default: False)
+- `figsize`: Figure size for the heatmap as (width, height) tuple (default: (10, 8))
 
 **Returns:**
 - pandas Series with top N correlations
