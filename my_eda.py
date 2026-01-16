@@ -11,28 +11,25 @@ import seaborn as sns
 import numpy as np
 from typing import Optional, Union
 
+def basic_information(dataset: pd.DataFrame) -> None:
+    """Prints basic exploratory information about a pandas DataFrame.
 
-def get_basic_information(dataset: pd.DataFrame) -> dict:
-    """Collects basic exploratory information about a pandas DataFrame.
-
-    This function is intended for early-stage Exploratory Data Analysis (EDA).
-    It validates the input dataset and returns key summary statistics that are
-    commonly required in data science projects.
+    The function validates the input dataset and outputs:
+    - Dataset shape (rows and columns)
+    - Total number of missing values
+    - Total number of duplicated rows
+    - Count of data types
+    - First five rows of the dataset
 
     Args:
-        dataset (pd.DataFrame): Input dataset.
+        dataset (pd.DataFrame): Input dataset for basic exploration.
 
     Raises:
         TypeError: If the input is not a pandas DataFrame.
         ValueError: If the DataFrame is empty.
 
     Returns:
-        dict: A dictionary containing:
-            - shape (tuple): Dataset shape as (n_rows, n_columns)
-            - total_missing (int): Total number of missing values
-            - total_duplicates (int): Number of duplicated rows
-            - dtypes (pd.Series): Count of each data type
-            - head (pd.DataFrame): First five rows of the dataset
+        None: This function prints information to the console and does not return a value.
     """
 
     if not isinstance(dataset, pd.DataFrame):
@@ -40,16 +37,35 @@ def get_basic_information(dataset: pd.DataFrame) -> dict:
 
     if dataset.empty:
         raise ValueError("Dataset is empty.")
+  
+    row, col = dataset.shape
+    print(f"❗Shape: rows {row} columns {col}")
+    print("=" * 40)
 
-    info = {
-        "shape": dataset.shape,
-        "total_missing": dataset.isnull().sum().sum(),
-        "total_duplicates": dataset.duplicated().sum(),
-        "dtypes": dataset.dtypes.value_counts(),
-        "head": dataset.head()
-    }
+    total_missing = dataset.isnull().sum().sum()
+  
+    if total_missing == 0:
+        print("There are no missing values in the dataset.")
+    else:
+        print(f"❗Total missing: {total_missing}")
 
-    return info
+    print("=" * 40)
+
+    dublicate = dataset.duplicated().sum()
+  
+    if dublicate == 0:
+        print("There are no dublicates in the dataset.")
+    else:
+        print(f"❗Total dublicates: {dublicate}")
+
+    print("=" * 40)
+
+    data_types = dataset.dtypes.value_counts()
+    print("❗Dtypes (count):")
+    print(data_types)
+
+    print("=" * 40)
+    print(dataset.head(5))
 
 
 def basic_eda(df: pd.DataFrame) -> None:

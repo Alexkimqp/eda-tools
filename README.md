@@ -53,11 +53,8 @@ Collects basic exploratory information about a pandas DataFrame and returns it a
 - `dataset`: Input pandas DataFrame to analyze
 
 **Returns:**
-- dict: A dictionary containing shape, total_missing, total_duplicates, dtypes, and head
+- None: This function prints information to the console and does not return a value.
 
-**Example:**hon
-info = get_basic_information(df)
-print(info['shape'])
 
 ### `basic_eda(df: pd.DataFrame) -> None`
 
