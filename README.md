@@ -45,6 +45,20 @@ corr_by_target(df, target='target_column', n=10)
 
 ## Functions
 
+### `get_basic_information(dataset: pd.DataFrame) -> dict`
+
+Collects basic exploratory information about a pandas DataFrame and returns it as a dictionary.
+
+**Parameters:**
+- `dataset`: Input pandas DataFrame to analyze
+
+**Returns:**
+- dict: A dictionary containing shape, total_missing, total_duplicates, dtypes, and head
+
+**Example:**hon
+info = get_basic_information(df)
+print(info['shape'])
+
 ### `basic_eda(df: pd.DataFrame) -> None`
 
 Performs basic exploratory data analysis and prints a comprehensive report.

@@ -14,7 +14,7 @@ except FileNotFoundError:
 
 setup(
     name='eda-tools',
-    version='0.1.1',
+    version='0.1.2',
     author='Kim Alexandr',
     author_email='alexkimaksashka@gmail.com',
     description='A collection of functions for exploratory data analysis',

@@ -12,6 +12,46 @@ import numpy as np
 from typing import Optional, Union
 
 
+def get_basic_information(dataset: pd.DataFrame) -> dict:
+    """Collects basic exploratory information about a pandas DataFrame.
+
+    This function is intended for early-stage Exploratory Data Analysis (EDA).
+    It validates the input dataset and returns key summary statistics that are
+    commonly required in data science projects.
+
+    Args:
+        dataset (pd.DataFrame): Input dataset.
+
+    Raises:
+        TypeError: If the input is not a pandas DataFrame.
+        ValueError: If the DataFrame is empty.
+
+    Returns:
+        dict: A dictionary containing:
+            - shape (tuple): Dataset shape as (n_rows, n_columns)
+            - total_missing (int): Total number of missing values
+            - total_duplicates (int): Number of duplicated rows
+            - dtypes (pd.Series): Count of each data type
+            - head (pd.DataFrame): First five rows of the dataset
+    """
+
+    if not isinstance(dataset, pd.DataFrame):
+        raise TypeError("Dataset must be a pandas DataFrame.")
+
+    if dataset.empty:
+        raise ValueError("Dataset is empty.")
+
+    info = {
+        "shape": dataset.shape,
+        "total_missing": dataset.isnull().sum().sum(),
+        "total_duplicates": dataset.duplicated().sum(),
+        "dtypes": dataset.dtypes.value_counts(),
+        "head": dataset.head()
+    }
+
+    return info
+
+
 def basic_eda(df: pd.DataFrame) -> None:
     """Perform basic exploratory data analysis on a DataFrame.
     
